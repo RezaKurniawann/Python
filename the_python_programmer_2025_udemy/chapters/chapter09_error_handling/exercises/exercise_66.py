@@ -10,7 +10,8 @@ class InvalidQuantityError(Exception):
 class ProductSalesCalculator:
     def __init__(self, price: float, quantity: int):
         if quantity <= 0:
-            print("Quantity must be greater than zero")
+            raise InvalidQuantityError("The quantity must be greater than zero.")
+
         self.price = price
         self.quantity = quantity
 

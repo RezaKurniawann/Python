@@ -6,4 +6,7 @@
 def divide(a: int, b: int) -> float | None:
     # Your code should go here.
 
-    return ...
+    try:
+        return a/b
+    except ZeroDivisionError:
+        return None

@@ -4,10 +4,12 @@
 
 
 # Implement the `NegativeValueError` class here.
-class NegativeValueError: ...
+
+class NegativeValueError(Exception):
+    pass
 
 
-def check_positive(number: int):
-    # Your code should go here.
-
-    return ...
+def check_positive(number: int) -> int:
+    if number < 0:
+        raise NegativeValueError("The number is negative.")
+    return number
