@@ -4,5 +4,4 @@
 
 def reverse_each_word(sentence: str) -> str:
     # Your code should go here.
-
-    ...
+    return " ".join(word[::-1] for word in sentence.split())

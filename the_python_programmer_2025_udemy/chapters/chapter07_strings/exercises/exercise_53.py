@@ -7,4 +7,7 @@
 def replace_spaces_with_hyphens(s: str) -> str:
     # Your code should go here.
 
-    return ...
+    return s.replace(" ","-")
+
+def replace_spaces_with_hyphens(s: str) -> str:
+    return "-".join(s.split())

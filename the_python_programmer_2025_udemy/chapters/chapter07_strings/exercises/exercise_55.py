@@ -13,8 +13,22 @@
 #   ]
 # The function should return: [("apple", 250), ("orange", 450)]
 
-
 def calculate_product_sales(sales: list[str]) -> list[tuple[str, int]]:
-    # Your code should go here.
-
-    ...
+    # Dictionary to store total sales for each product
+    product_sales = {}
+    
+    for transaction in sales:
+        # Split the transaction string into components
+        date, product, amount = transaction.split(',')
+        
+        # Convert the sales amount to an integer
+        amount = int(amount)
+        
+        # Update the total sales for the product
+        if product in product_sales:
+            product_sales[product] += amount
+        else:
+            product_sales[product] = amount
+    
+    # Convert the dictionary to a list of tuples
+    return list(product_sales.items())

@@ -7,4 +7,4 @@
 def reverse_string(s: str) -> str:
     # Your code should go here.
 
-    return ...
+    return s[::-1]

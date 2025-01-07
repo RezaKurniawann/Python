@@ -8,4 +8,4 @@
 def get_substring(s: str, start: int, end: int) -> str:
     # Your code should go here.
 
-    return ...
+    return s[start:end]
