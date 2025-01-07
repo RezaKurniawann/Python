@@ -7,8 +7,12 @@
 
 # Assume that the text file contains only lowercase words separated by spaces.
 
+from collections import Counter
 
 def count_word_frequency(file_name: str) -> dict[str, int]:
     # Your code should go here.
 
-    ...
+    with open (file_name) as file:
+        words = file.read().split()
+        return dict (Counter(words))
+

@@ -11,5 +11,6 @@
 
 def count_errors_from_file(file_name: str) -> int:
     # Your code should go here.
-
-    ...
+    
+    with open (file_name) as file:
+        return sum (1 for line in file if "ERROR" in line)

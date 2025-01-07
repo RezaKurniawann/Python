@@ -13,6 +13,13 @@
 
 
 def count_emails(file_name: str) -> int:
-    # Your code should go here.
+    with open (filename) as file:
+        return sum (1 for line in file if "@" in line)
 
-    ...
+def count_emails (filename: str) -> int:
+    with open (filename) as file:
+        count = 0
+        for line in file:
+            if "@" in line:
+                count += 1
+        return count

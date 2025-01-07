@@ -20,10 +20,22 @@
 # The total inventory value is calculated as the sum of quantity * price for each item.
 # The restock alerts are items with a quantity below the restock threshold.
 
-
+ 
 def inventory_management(
     file_name: str, restock_threshold: int
 ) -> dict[str, list[dict[str, str]]]:
-    # Your code should go here.
-
-    ...
+    with open(file_name) as file:
+        next(file)
+        total_inventory_value = 0
+        restock_alerts = []
+        for line in file:
+            item_name, quantity, price = line.strip().split(",")
+            quantity = int(quantity)
+            price = float(price)
+            total_inventory_value += quantity * price
+            if quantity < restock_threshold:
+                restock_alerts.append(item_name)
+        return {
+            "total_inventory_value": total_inventory_value,
+            "restock_alerts": restock_alerts,
+        }

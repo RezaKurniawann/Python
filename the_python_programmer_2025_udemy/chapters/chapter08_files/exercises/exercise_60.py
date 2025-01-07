@@ -11,8 +11,12 @@
 # English: 98, 85, 88, 92, 95
 # The function should return [("Math", 90.0), ("Science", 87.6), ("History", 89.6), ("English", 91.6)].
 
-
 def course_grades_summary(file_name: str) -> list[tuple[str, float]]:
-    # Your code should go here.
-
-    ...
+    with open(file_name) as file:
+        summary = []
+        for line in file:
+            course, *grades = line.strip().split(":")
+            grades = [int(grade) for grade in grades[0].split(",")]
+            average = sum(grades) / len(grades)
+            summary.append((course, average))
+    return summary
