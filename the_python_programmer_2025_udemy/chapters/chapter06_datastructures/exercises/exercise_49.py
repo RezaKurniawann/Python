@@ -7,8 +7,8 @@
 # the function should return [6, 9, 12].
 # Hint: Is there a built-in Python data structure that can help you with this?
 
-
 def rolling_sum(my_list: list[int], window_size: int) -> list[int]:
-    # Your code should go here.
-
-    ...
+    result = []
+    for i in range(len(my_list) - window_size + 1):
+        result.append(sum(my_list[i : i + window_size]))
+    return result

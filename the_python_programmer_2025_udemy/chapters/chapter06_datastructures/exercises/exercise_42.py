@@ -5,8 +5,13 @@
 
 # Assume the string is all lowercase and contains no spaces.
 
-
 def count_letters(word: str) -> dict[str, int]:
-    # Your code should go here.
+    result = {}
+    for char in word:
+        result[char] = result.get(char, 0) + 1
+    return result
+ 
+from collections import Counter
+def count_letters(word: str) -> dict[str, int]:
+    return dict(Counter(word))
 
-    return ...

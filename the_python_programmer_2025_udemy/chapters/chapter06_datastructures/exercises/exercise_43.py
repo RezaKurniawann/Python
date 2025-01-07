@@ -6,6 +6,7 @@
 
 
 def unique_elements(list1: list[int], list2: list[int]) -> set[int]:
-    # Your code should go here.
+    return set(list1 + list2)
 
-    return ...
+def unique_elements(list1: list[int], list2: list[int]) -> set[int]:
+    return set(list1).union(set(list2))

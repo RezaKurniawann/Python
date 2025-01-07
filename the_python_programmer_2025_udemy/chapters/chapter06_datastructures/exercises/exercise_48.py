@@ -9,8 +9,13 @@
 #  ['O', 'O', 'O', 'O']]
 # The function should return True.
 
-
 def is_target_duplicate_in_matrix(matrix: list[list[str]], target: str) -> bool:
-    # Your code should go here.
+    count = 0
+    for row in matrix:
+        for value in row:
+            if value == target:
+                count += 1
+                if count > 1:  # Stop early if duplicate is found
+                    return True
+    return False
 
-    ...

@@ -9,8 +9,10 @@
 #  ['O', 'O', 'O', 'O']]
 # The function should return [(1, 1)].
 
-
 def record_x_in_matrix(matrix: list[list[str]]) -> list[tuple[int, int]]:
-    # Your code should go here.
-
-    ...
+    result = []
+    for row_index, row in enumerate(matrix):
+        for col_index, value in enumerate(row):
+            if value == 'X':  # Check for 'X'
+                result.append((row_index, col_index))
+    return result

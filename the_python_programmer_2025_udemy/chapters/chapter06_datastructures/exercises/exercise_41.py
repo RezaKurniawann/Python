@@ -4,6 +4,12 @@
 
 
 def remove_duplicates(my_list: list[int]) -> list[int]:
-    # Your code should go here.
+    result = []
+    for number in my_list:
+        if number not in result:
+            result.append(number)
+    return result
+ 
 
-    return ...
+def remove_duplicates(my_list: list[int]) -> list[int]:
+    return list(set(my_list))

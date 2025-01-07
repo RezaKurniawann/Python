@@ -6,8 +6,8 @@
 # Assume all strings are lowercase.
 # Hint: Try to solve this once with a built-in Python data structure and once without.
 
-
+from collections import Counter
 def count_words(words: list[str]) -> dict[str, int]:
     # Your code should go here.
 
-    ...
+    return dict(Counter(words))

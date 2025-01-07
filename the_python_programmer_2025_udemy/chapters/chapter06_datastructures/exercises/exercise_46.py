@@ -5,6 +5,33 @@
 
 
 def valid_parentheses(parentheses: str) -> bool:
-    # Your code should go here.
+    matching = {')': '(', '}': '{', ']': '['}
+    stack = []
 
-    return ...
+    for char in parentheses:
+        if char in matching.values():
+            stack.append(char)
+        elif char in matching.keys():  
+            if not stack or stack[-1] != matching[char]:  
+                return False
+            stack.pop()  
+
+    return not stack  
+
+def valid_parentheses(parentheses: str) -> bool:
+    stack = []
+    for char in parentheses:
+        if char in "([{":
+            stack.append(char)
+        else:
+            if not stack:
+                return False
+            if char == ")" and stack[-1] == "(":
+                stack.pop()
+            elif char == "]" and stack[-1] == "[":
+                stack.pop()
+            elif char == "}" and stack[-1] == "{":
+                stack.pop()
+            else:
+                return False
+    return not stack
