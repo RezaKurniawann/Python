@@ -14,5 +14,13 @@ from __future__ import annotations
 
 
 class Vector3D:
-    # Your code should go here.
-    ...
+    def __init__ (self, x: float, y: float, z: float):
+        self.x = x
+        self.y = y
+        self.z = z
+    
+    def __add__ (self, other: Vector3D) -> Vector3D:
+        return Vector3D (self.x + other.x, self.y + other.y, self.z + other.z)
+    def __sub__ (self, other: Vector3D) -> Vector3D:
+        return Vector3D (self.x - other.x, self.y - other.y, self.z - other.z)
+

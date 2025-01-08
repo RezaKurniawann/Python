@@ -4,27 +4,29 @@
 # We want to define a protocol called `ContentCreator` that has the `create_content` method.
 # See `test_e77()` in `tests/test_ch10.py` for the expected behavior.
 
+
 from typing import Protocol
-
-
+ 
+ 
 class ContentCreator(Protocol):
     def create_content(self) -> str: ...
-
-
+ 
+ 
 class Blogger:
     def add_post(self, title: str):
         return f"Creating a new post: {title}"
-
-    # TODO: Write create_content() method.
-
-
+ 
+    def create_content(self, title: str) -> str:
+        return self.add_post(title)
+ 
+ 
 class Vlogger:
     def add_video(self, title: str) -> None:
         return f"Creating a new video: {title} with path: /videos/{title}.mp4"
-
-    # TODO: Write create_content() method.
-
-
+ 
+    def create_content(self, title: str) -> str:
+        return self.add_video(title)
+ 
+ 
 def create_content(creator: ContentCreator, title: str) -> str:
-    # Your code here
-    ...
+    return creator.create_content(title)

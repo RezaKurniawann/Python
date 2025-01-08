@@ -31,17 +31,31 @@ from dataclasses import dataclass, field  # noqa: F401
 
 @dataclass
 class Card:
-    # Your code should go here.
-    ...
-
+    card_number: str
+    card_holder: str
+    account_number: str
+    expiration_date: str
+    pin: str
 
 @dataclass
 class Account:
-    # Your code should go here.
-    ...
-
+    account_number: str
+    account_holder: str
+    balance: float
+    cards: list[Card] = field (default_factory = list)
+    
+    def add_card (self, card: Card):
+        self.cards.append(card)
+    
+    def remove_card (self, card: Card):
+        self.cards.remove(card)
 
 @dataclass
 class Customer:
-    # Your code should go here.
-    ...
+    first_name: str
+    last_name: str
+    accounts: list[Account] = field (default_factory = list)
+    cards: list[Card] = field (default_factory = list)
+    total_balance: float = 0.0
+
+

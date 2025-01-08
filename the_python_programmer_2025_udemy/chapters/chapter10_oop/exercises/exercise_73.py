@@ -16,7 +16,21 @@
 from .exercise_71 import Book, Genre  # noqa: F401
 from .exercise_72 import BookShelf  # noqa: F401
 
-
 class Library:
-    # Add your code here.
-    ...
+    def __init__(self):
+        self.shelves: list[BookShelf] = []
+        self.seen_books: set[Book] = set()
+ 
+    def add_shelf(self, shelf: BookShelf) -> None:
+        self.seen_books.update(shelf.get_books())
+        self.shelves.append(shelf)
+ 
+    def remove_shelf(self, shelf: BookShelf) -> None:
+        self.seen_books.difference_update(shelf.get_books())
+        self.shelves.remove(shelf)
+ 
+    def get_books(self) -> list[Book]:
+        return list(self.seen_books)
+ 
+    def is_book_in_library(self, book: Book) -> bool:
+        return book in self.seen_books

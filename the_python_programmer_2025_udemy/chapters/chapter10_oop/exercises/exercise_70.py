@@ -10,16 +10,23 @@ from abc import ABC, abstractmethod  # noqa: F401
 PI = 3.14159
 
 
-class Shape:
-    # Your code should go here.
-    ...
+class Shape (ABC):
+    @abstractmethod
+    def area (self):
+        pass
 
 
-class Square:
-    # Your code should go here.
-    ...
+class Square(Shape):
+    def __init__ (self, side: float):
+        self.side = side
+
+    def area (self):
+        return round (self.side**2)
 
 
-class Circle:
-    # Your code should go here.
-    ...
+class Circle(Shape):
+    def __init__ (self, radius: float):
+        self.radius = radius
+
+    def area (self):
+        return round (PI * self.radius**2, 2)

@@ -15,7 +15,20 @@
 
 from .exercise_71 import Book, Genre  # noqa: F401
 
-
 class BookShelf:
-    # Add your code here.
-    ...
+    def __init__(self, books: list[Book] = []):
+        self.books = books
+ 
+    def add_book(self, book: Book) -> None:
+        self.books.append(book)
+ 
+    def remove_book(self, book: Book) -> None:
+        self.books.remove(book)
+ 
+    def get_books(self) -> list[Book]:
+        return self.books
+ 
+    def get_books_by_genre(self, genre: Genre) -> list[Book]:
+        return [book for book in self.books if book.genre == genre]
+
+

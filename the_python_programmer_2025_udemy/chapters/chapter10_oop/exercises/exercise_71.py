@@ -20,20 +20,39 @@
 # 4. History
 from __future__ import annotations
 from dataclasses import dataclass
+from enum import Enum
 
-
+ 
+class Genre(Enum):
+    Fiction = 1
+    NonFiction = 2
+    Biography = 3
+    History = 4
+ 
+ 
 @dataclass
 class Author:
-    # Your code should go here.
-    ...
-
-
-class Genre:
-    # Your code should go here.
-    ...
-
-
+    first_name: str
+    last_name: str
+ 
+    def __hash__(self):
+        return hash((self.first_name, self.last_name))
+ 
+ 
 @dataclass
 class Book:
-    # Your code should go here.
-    ...
+    title: str
+    author: Author
+    publication_year: int
+    genre: Genre
+ 
+    def __hash__(self):
+        return hash((self.title, self.author, self.publication_year, self.genre))
+ 
+    def __eq__(self, other: Book):
+        return (
+            self.title == other.title
+            and self.author == other.author
+            and self.publication_year == other.publication_year
+            and self.genre == other.genre
+        )

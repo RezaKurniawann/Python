@@ -17,31 +17,61 @@
 
 from .exercise_74 import Account, Card, Customer
 
-
 class BankCustomer(Customer):
     def __init__(self, first_name: str, last_name: str):
-        self.first_name = first_name
-        self.last_name = last_name
+        super().__init__(first_name, last_name)
         self.accounts: list[Account] = []
         self.cards: list[Card] = []
-        self.total_balance = 0.0
+        self.total_balance: float = 0.0
 
-    def add_account(self, account: Account) -> None: ...
+    def add_account(self, account: Account) -> None:
+        self.accounts.append(account)
+        self.cards.extend(account.cards)
+        self.total_balance += account.balance
 
-    def remove_account(self, account_number: int) -> None: ...
+    def remove_account(self, account_number: str) -> None:
+        account = self.get_account(account_number)
+        for card in account.cards:
+            self.cards.remove(card)
+        self.total_balance -= account.balance
+        self.accounts.remove(account)
 
-    def add_card(self, card: Card) -> None: ...
+    def add_card(self, card: Card) -> None:
+        self.cards.append(card)
 
-    def remove_card(self, card_number: int) -> None: ...
+    def remove_card(self, card_number: str) -> None: ...
 
-    def get_account(self, account_number: int) -> Account: ...
+    def get_account(self, account_number: str) -> Account:
+        for account in self.accounts:
+            if account.account_number == account_number:
+                return account
+        raise ValueError(f"Account with number {account_number} not found")
 
-    def get_card(self, card_number: int) -> Card: ...
+    def get_card(self, card_number: str) -> Card:
+        for card in self.cards:
+            if card.card_number == card_number:
+                return card
+        raise ValueError(f"Card with number {card_number} not found")
 
-    def get_total_balance(self) -> float: ...
+    def get_total_balance(self) -> float:
+        return self.total_balance
 
     def withdraw(
-        self, account_number: int, amount: float, card_number: int, pin: int
-    ) -> None: ...
+        self, account_number: str, amount: float, card_number: str, pin: str
+    ) -> None:
+        account = self.get_account(account_number)
+        card = self.get_card(card_number)
+        if card.pin != pin:
+            raise ValueError("Invalid pin")
+        if account.balance < amount:
+            raise ValueError("Insufficient funds")
+        account.balance -= amount
+        self.total_balance -= amount
 
-    def deposit(self, account_number: int, amount: float) -> None: ...
+    def deposit(self, account_number: str, amount: float) -> None:
+        try:
+            account = self.get_account(account_number)
+            account.balance += amount
+            self.total_balance += amount
+        except ValueError as e:
+            print(f"Error: Cannot deposit with unknown account number {account_number}")
