@@ -16,11 +16,17 @@ from datetime import datetime  # noqa: F401
 
 @dataclass
 class Transaction:
-    timestamp: str  # Replace with `datetime`
+    timestamp: datetime  
     description: str
 
-
 def parse_transactions(filename: str) -> list[Transaction]:
-    # Your code should go here.
+    result = []
+    with open(filename) as file:
+        for line in file:
+            timestamp, description = line.strip().split(",")
+            result.append(
+                Transaction(datetime.strptime(timestamp, "%Y-%m-%d"), description)
+            )
+ 
+    return result
 
-    ...

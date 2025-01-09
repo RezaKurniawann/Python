@@ -3,7 +3,8 @@
 from functools import lru_cache  # noqa: F401
 
 
+@lru_cache(maxsize=128)
 def compute_fibonacci(n: int) -> int:
-    # Your code should go here.
-
-    ...
+    if n < 2:
+        return n
+    return compute_fibonacci(n - 1) + compute_fibonacci(n - 2)

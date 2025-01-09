@@ -7,7 +7,10 @@ from itertools import chain  # noqa: F401
 # flatten_list_of_lists([[1, 2, 3], [4, 5], [6, 7, 8, 9]]) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
-def flatten_list_of_lists(list_of_lists: list[list[int]]) -> list[int]:
-    # Your code should go here.
 
-    ...
+def flatten_list_of_lists(list_of_lists: list[list[int]]) -> list[int]:
+    return list(chain.from_iterable(list_of_lists))
+
+def flatten_list_of_lists(list_of_lists: list[list[int]]) -> list[int]:
+    return list(chain(*list_of_lists))
+

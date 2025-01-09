@@ -6,6 +6,10 @@ from datetime import date
 
 
 def days_until_next_birthday(birthday: date, now: date = date.today()) -> int:
-    # Your code should go here.
+    current_year_birthday = date(now.year, birthday.month, birthday.day)
 
-    ...
+    if now <= current_year_birthday:
+        return (current_year_birthday - now).days
+
+    next_year_birthday = date (now.year + 1, birthday.month, birthday.day)
+    return (next_year_birthday - now).days

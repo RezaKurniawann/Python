@@ -7,18 +7,13 @@
 
 import logging  # noqa: F401
 
-
 class RateInterestCalculator:
     def __init__(self) -> None:
-        pass
-
-    def foo():
-        print("Info - ...")
-        ...
-        print("ERROR - something happened")
-
-    def bar():
-        print("Info - ...")
-
-    def _baz():
-        print("debug - ....")
+        self.logger = logging.getLogger(__name__)
+ 
+    def calculate_rate(self) -> None:
+        self.logger.info("Calculating rate...")
+        self.logger.error("An error occurred while calculating the rate")
+ 
+    def calculate_interest(self) -> None:
+        self.logger.info("Calculating interest...")

@@ -12,8 +12,17 @@
 # - city
 # - zip code
 
+from dataclasses import dataclass, field
 
-class Address: ...
+@dataclass
+class Address:
+    street: str
+    city: str
+    zip_code: str
 
-
-class Person: ...
+@dataclass
+class Person:
+    name: str
+    age: int
+    address: Address
+    previous_address: list[Address] = field (default_factory = list)
