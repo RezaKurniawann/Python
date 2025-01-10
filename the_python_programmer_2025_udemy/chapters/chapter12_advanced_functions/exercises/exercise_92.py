@@ -7,5 +7,12 @@
 #     print(f"Hello {name}")
 #
 
-
-def repeat_it(n: int): ...
+def repeat_it(n: int):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(n):
+                func(*args, **kwargs)
+ 
+        return wrapper
+ 
+    return decorator
